@@ -1,11 +1,14 @@
-// Given a string, return true or false depending if the string
-// is a palindrome.  Palindromes are words that read the same backwards
-// and forwards. Make sure it is case insensitive!
+// --- Directions
+// Make a function that looks through an array of objects (first argument) and
+// returns an array of all objects that have matching name and value pairs
+// (second argument). Each name and value pair of the source object has to be
+// present in the object from the collection if it is to be included in the
+// returned array.
 // --- Examples:
-//   palindrome("Madam") === true
-//   palindrome("love") === false
+// whatIsInAName([{ a: 1, b: 2, c: 3 }], { a: 1, b: 9999, c: 3 }) --> []
+// whatIsInAName([{ "apple": 1, "bat": 2 }], { "apple": 1 }) --> [{ "apple": 1, "bat": 2 }]
 
-function palindrome(str) {}
+function whatIsInAName(collection, source) {}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
@@ -33,27 +36,25 @@ function palindrome(str) {}
 mocha.setup("bdd");
 const { assert } = chai;
 
-describe("Palindrome", () => {
-  it('"bcb" is a palindrome', () => {
-    assert.equal(palindrome("bcb"), true);
-  });
-  it('"   bcb" is not a palindrome', () => {
-    assert.equal(palindrome(" bcb"), false);
-  });
-  it('"bcb   " is not a palindrome', () => {
-    assert.equal(palindrome("bcb "), false);
-  });
-  it('"love" is not a palindrome', () => {
-    assert.equal(palindrome("love"), false);
-  });
-  it('"699996" a palindrome', () => {
-    assert.equal(palindrome("699996"), true);
-  });
-  it('"racecar" a palindrome', () => {
-    assert.equal(palindrome("bcb"), true);
-  });
-  it("is case insensitive.", () => {
-    assert.equal(palindrome("Trunk knurt"), true);
+describe("whatIsInAName()", () => {
+  it("works.", () => {
+    const res1 = whatIsInAName(
+      [
+        { first: "Romeo", last: "Montague" },
+        { first: "Mercutio", last: null },
+        { first: "Tybalt", last: "Capulet" }
+      ],
+      { last: "Capulet" }
+    );
+    const res2 = whatIsInAName(
+      [{ apple: 1 }, { apple: 1 }, { apple: 1, bat: 2 }],
+      { apple: 1 }
+    );
+    const res3 = whatIsInAName([{ a: 1, b: 2, c: 3 }], { a: 1, b: 9999, c: 3 });
+
+    assert.deepEqual(res1, [{ first: "Tybalt", last: "Capulet" }]);
+    assert.deepEqual(res2, [{ apple: 1 }, { apple: 1 }, { apple: 1, bat: 2 }]);
+    assert.deepEqual(res3, []);
   });
 });
 

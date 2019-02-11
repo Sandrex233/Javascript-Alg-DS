@@ -1,11 +1,12 @@
-// Given a string, return true or false depending if the string
-// is a palindrome.  Palindromes are words that read the same backwards
-// and forwards. Make sure it is case insensitive!
+// --- Directions
+// Given an array of numbers, return all pairs that add up to a given sum.
+// Do not return duplicate pairs. For instance in example below you
+// could return [0, 5] or [5, 0] as a result for first pair but NOT
+// both.
 // --- Examples:
-//   palindrome("Madam") === true
-//   palindrome("love") === false
+// twoSum([7, 0, -4, 5, 2, 3], 5) -->  [[0, 5], [2, 3]]
 
-function palindrome(str) {}
+function twoSum(arr, sum) {}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
@@ -33,27 +34,22 @@ function palindrome(str) {}
 mocha.setup("bdd");
 const { assert } = chai;
 
-describe("Palindrome", () => {
-  it('"bcb" is a palindrome', () => {
-    assert.equal(palindrome("bcb"), true);
+describe("twoSum()", () => {
+  it("twoSum([7, 0, -4, 5, 2, 3], 5) works.", () => {
+    const result = twoSum([7, 0, -4, 5, 2, 3], 5);
+    const firstPair = result[0];
+    const secondPair = result[1];
+
+    assert.equal(result.length, 2);
+    assert.equal(firstPair.length, 2);
+    assert.equal(secondPair.length, 2);
+
+    assert.isOk(firstPair.includes(0) && firstPair.includes(5));
+    assert.isOk(secondPair.includes(3) && secondPair.includes(2));
   });
-  it('"   bcb" is not a palindrome', () => {
-    assert.equal(palindrome(" bcb"), false);
-  });
-  it('"bcb   " is not a palindrome', () => {
-    assert.equal(palindrome("bcb "), false);
-  });
-  it('"love" is not a palindrome', () => {
-    assert.equal(palindrome("love"), false);
-  });
-  it('"699996" a palindrome', () => {
-    assert.equal(palindrome("699996"), true);
-  });
-  it('"racecar" a palindrome', () => {
-    assert.equal(palindrome("bcb"), true);
-  });
-  it("is case insensitive.", () => {
-    assert.equal(palindrome("Trunk knurt"), true);
+
+  it("twoSum([2], 4) works.", () => {
+    assert.equal(twoSum([2], 4).length, 0);
   });
 });
 

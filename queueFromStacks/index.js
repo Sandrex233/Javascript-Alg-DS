@@ -75,9 +75,10 @@ describe("Queue from Stacks", () => {
     q.enqueue(2);
     q.enqueue(3);
     assert.equal(q.dequeue(), 1);
+    q.enqueue(4);
     assert.equal(q.dequeue(), 2);
     assert.equal(q.dequeue(), 3);
-    assert.equal(q.dequeue(), undefined);
+    assert.equal(q.dequeue(), 4);
   });
   it("peek() returns next element to be removed from Queue", () => {
     const q = new Queue();

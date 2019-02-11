@@ -1,11 +1,11 @@
-// Given a string, return true or false depending if the string
-// is a palindrome.  Palindromes are words that read the same backwards
-// and forwards. Make sure it is case insensitive!
+// --- Directions
+// Given a magazine of words and a ransom note, determine if it’s possible to “cut out”
+// and create the ransom note from the magazine words. Word count matters!
 // --- Examples:
-//   palindrome("Madam") === true
-//   palindrome("love") === false
-
-function palindrome(str) {}
+// const magazine = "I love you";
+// ransomNote('I love you', magazine) --> true
+// ransomNote('I love you Kevin please marry me boss', magazine) --> false
+function ransomNote(note, magazine) {}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
@@ -32,28 +32,18 @@ function palindrome(str) {}
 
 mocha.setup("bdd");
 const { assert } = chai;
+const magazine = "I love you";
 
-describe("Palindrome", () => {
-  it('"bcb" is a palindrome', () => {
-    assert.equal(palindrome("bcb"), true);
+describe("Ransom Note", () => {
+  it("Should return true", () => {
+    assert.equal(ransomNote("I love you", magazine), true);
   });
-  it('"   bcb" is not a palindrome', () => {
-    assert.equal(palindrome(" bcb"), false);
-  });
-  it('"bcb   " is not a palindrome', () => {
-    assert.equal(palindrome("bcb "), false);
-  });
-  it('"love" is not a palindrome', () => {
-    assert.equal(palindrome("love"), false);
-  });
-  it('"699996" a palindrome', () => {
-    assert.equal(palindrome("699996"), true);
-  });
-  it('"racecar" a palindrome', () => {
-    assert.equal(palindrome("bcb"), true);
-  });
-  it("is case insensitive.", () => {
-    assert.equal(palindrome("Trunk knurt"), true);
+
+  it("Should return false", () => {
+    assert.equal(
+      ransomNote("I love you Kevin please marry me boss", magazine),
+      false
+    );
   });
 });
 
