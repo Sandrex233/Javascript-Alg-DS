@@ -1,13 +1,15 @@
 // Without using the length property of the LinkedList,
 // return the node in a linked list that is at a given
-// number of nodes away from the end.
+// number of nodes away from the end. Have the function return null
+// on an out of bound steps
 // --- Examples
 //    const list = new List();
-//    list.push(1);
-//    list.push(2);
-//    list.push(3);
-//    list.push(4);
-//    fromLast(list, 1) // 3
+//    list.push("A");
+//    list.push("B");
+//    list.push("C");
+//    list.push("D");
+//    fromLast(list, 1).data // "C"
+//    fromLast(list, 100) // null
 
 function fromLast(list, n) {}
 
@@ -122,13 +124,24 @@ describe("fromLast", () => {
   it("works", () => {
     const l = new LinkedList();
 
-    l.push(1);
-    l.push(2);
-    l.push(3);
-    l.push(4);
-    l.push(5);
+    l.push("A");
+    l.push("B");
+    l.push("C");
+    l.push("D");
+    l.push("E");
 
-    assert.equal(fromLast(l, 3).data, 2);
+    assert.equal(fromLast(l, 3).data, "B");
+  });
+  it("returns null on out of bound steps", () => {
+    const l = new LinkedList();
+
+    l.push("A");
+    l.push("B");
+    l.push("C");
+    l.push("D");
+    l.push("E");
+
+    assert.equal(fromLast(l, 100), null);
   });
 });
 

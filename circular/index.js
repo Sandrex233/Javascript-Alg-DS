@@ -122,6 +122,10 @@ mocha.setup("bdd");
 const { assert } = chai;
 
 describe("Circular Linked List", () => {
+  it("returns false on empty list.", () => {
+    const l = new LinkedList();
+    assert.equal(circular(l), false);
+  });
   it("returns true for circular linked lists", () => {
     const l = new LinkedList();
     l.push("a");

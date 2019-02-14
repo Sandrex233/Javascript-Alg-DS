@@ -141,6 +141,10 @@ mocha.setup("bdd");
 const { assert } = chai;
 
 describe("Midpoint of Linked List", () => {
+  it("Returns null on empty list.", () => {
+    const l = new LinkedList();
+    assert.equal(midpoint(l), null);
+  });
   it("Returns the middle node of list with odd number of nodes.", () => {
     const l = new LinkedList();
     l.push(1);

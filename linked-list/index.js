@@ -274,21 +274,23 @@ describe.skip("reverse()", () => {
   });
 });
 
-describe.skip("forEach()", () => {
+describe("forEach()", () => {
   it("calls function provided to it on each node.", () => {
     const l = new LinkedList();
 
-    l.push(1);
-    l.push(2);
-    l.push(3);
+    l.push(10);
+    l.push(20);
+    l.push(30);
 
-    l.forEach(node => {
-      node.data += 1;
+    l.forEach((node, index) => {
+      if (index % 2 === 0) {
+        node.data += 1;
+      }
     });
 
-    assert.equal(l.get(0).data, 2);
-    assert.equal(l.get(1).data, 3);
-    assert.equal(l.get(2).data, 4);
+    assert.equal(l.get(0).data, 11);
+    assert.equal(l.get(1).data, 20);
+    assert.equal(l.get(2).data, 31);
   });
 });
 
