@@ -62,7 +62,16 @@ describe("Stack from Array", () => {
     assert.equal(s.peek(), 3);
     assert.equal(s.pop(), 3);
   });
-  it("Stack has behavior of first in last out", () => {
+  it("Stack has FILO / LIFO behavior.", () => {
+    const browserHistory = new Stack();
+    browserHistory.push("www.youtube.com");
+    browserHistory.push("www.youtube.com/login/KodingKevin");
+    browserHistory.push("www.youtube.com/watch/cats");
+    browserHistory.push("www.youtube.com/watch/cats_meowing");
+
+    //Pressing the back button on my browser
+    assert.equal(browserHistory.pop(), "www.youtube.com/watch/cats_meowing");
+
     const s = new Stack();
     s.push(1);
     s.push(2);
