@@ -33,13 +33,6 @@ mocha.setup("bdd");
 const { assert } = chai;
 
 describe("push()", () => {
-  it("updates length of double linked list", () => {
-    const l = new DoubleLinkedList();
-    l.push("A");
-    assert.equal(l.length, 1);
-    l.push("B");
-    assert.equal(l.length, 2);
-  });
   it("adds node to end of empty list by correctly setting head and tail", () => {
     const l = new DoubleLinkedList();
     l.push("A");
@@ -53,6 +46,16 @@ describe("push()", () => {
     assert.equal(l.tail.val, 4);
     assert.equal(l.tail.prev.val, 2);
     assert.equal(l.tail.prev.next.val, 4);
+  });
+  it("updates length and returns back the linked list.", () => {
+    const l = new DoubleLinkedList();
+    const res1 = l.push("A");
+    assert.equal(res1.tail.val, "A");
+
+    assert.equal(l.length, 1);
+    const res2 = l.push("B");
+    assert.equal(l.length, 2);
+    assert.equal(res2.tail.val, "B");
   });
 });
 
@@ -117,14 +120,13 @@ describe.skip("shift()", () => {
 });
 
 describe.skip("unshift()", () => {
-  it("adds node to start of empty list by setting head, tail, and length correctly.", () => {
+  it("adds node to start of empty list by setting head and tail correctly.", () => {
     const l = new DoubleLinkedList();
     l.unshift("A");
     assert.equal(l.head.val, "A");
     assert.equal(l.tail.val, "A");
-    assert.equal(l.length, 1);
   });
-  it("adds node to start of non-empty list. Length of list updated, 'next' and 'prev' properties of nodes updated.", () => {
+  it("adds node to start of non-empty list.'next' and 'prev' properties of nodes updated.", () => {
     const l = new DoubleLinkedList();
     l.push("A");
     l.push("B");
@@ -132,6 +134,16 @@ describe.skip("unshift()", () => {
     assert.equal(l.head.val, "C");
     assert.equal(l.head.next.val, "A");
     assert.equal(l.head.next.prev.val, "C");
+  });
+  it("updates length and returns back list.", () => {
+    const l = new DoubleLinkedList();
+    const res1 = l.unshift("A");
+    assert.equal(res1.head.val, "A");
+
+    l.push("B");
+    const res2 = l.unshift("C");
+    assert.equal(l.length, 3);
+    assert.equal(res2.head.val, "C");
   });
 });
 
@@ -177,19 +189,6 @@ describe.skip("insert()", () => {
     assert.equal(l.insert(1, "meow"), false);
     assert.equal(l.insert(-10, "meow"), false);
   });
-  it("inserts Node correctly for beginning or end of list.", () => {
-    const l = new DoubleLinkedList();
-    l.push("A");
-    l.insert(0, "meow");
-    assert.equal(l.head.val, "meow");
-    assert.equal(l.head.next.val, "A");
-    assert.equal(l.head.next.prev.val, "meow");
-
-    l.insert(2, "woof");
-    assert.equal(l.tail.val, "woof");
-    assert.equal(l.tail.prev.val, "A");
-    assert.equal(l.tail.prev.next.val, "woof");
-  });
   it("inserts Node correctly at given index. Returns true. Increases length of List. Correctly sets 'next' and 'prev' properties of nodes on List", () => {
     const l = new DoubleLinkedList();
     l.push("A");
@@ -206,6 +205,24 @@ describe.skip("insert()", () => {
     assert.equal(l.length, 3);
     assert.equal(res, true);
   });
+  it("Works for beginning of list.", () => {
+    const l = new DoubleLinkedList();
+    l.push("A");
+    l.insert(0, "meow");
+    assert.equal(l.head.val, "meow");
+    assert.equal(l.head.next.val, "A");
+    assert.equal(l.head.next.prev.val, "meow");
+  });
+  it("Works when inserting on index equal to length of list.", () => {
+    const l = new DoubleLinkedList();
+    l.push("A");
+
+    const res = l.insert(1, "B");
+    assert.equal(res, true);
+    assert.equal(l.tail.val, "B");
+    assert.equal(l.tail.prev.val, "A");
+    assert.equal(l.tail.prev.next.val, "B");
+  });
 });
 
 describe.skip("remove()", () => {
@@ -214,16 +231,6 @@ describe.skip("remove()", () => {
     l.push("A");
     assert.isNotOk(l.remove(1));
     assert.isNotOk(l.remove(-1));
-  });
-  it("removes node correctly for beginning or end of list.", () => {
-    const l = new DoubleLinkedList();
-    l.push("A");
-    l.push("B");
-    l.remove(0);
-    assert.equal(l.head.val, "B");
-    l.push("C");
-    l.remove(1);
-    assert.equal(l.tail.val, "B");
   });
   it("returns removedNode. Decreases length of list. Updates 'next' and 'prev' properties of nodes correctly", () => {
     const l = new DoubleLinkedList();
@@ -241,6 +248,21 @@ describe.skip("remove()", () => {
     const tail = l.get(1);
     assert.equal(head.next.val, "C");
     assert.equal(tail.prev.val, "A");
+  });
+  it("removes node correctly for beginning of list.", () => {
+    const l = new DoubleLinkedList();
+    l.push("A");
+    l.push("B");
+    assert.equal(l.remove(0).val, "A");
+    assert.equal(l.head.val, "B");
+  });
+  it("removes node correctly for end of list.", () => {
+    const l = new DoubleLinkedList();
+    l.push("A");
+    l.push("B");
+    l.push("C");
+    assert.equal(l.remove(2).val, "C");
+    assert.equal(l.tail.val, "B");
   });
 });
 
