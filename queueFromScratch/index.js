@@ -20,7 +20,7 @@ class Queue {
     //Think of head and tail in terms of linkedlist NOT a queue
     this.head = null;
     this.tail = null;
-    this.size = 0;
+    this.length = 0;
   }
 }
 
@@ -62,18 +62,23 @@ describe("Queue from scratch", () => {
     q.enqueue("A");
     q.enqueue("B");
     q.enqueue("C");
-    assert.equal(q.size, 3);
+    assert.equal(q.length, 3);
 
     assert.equal(q.head.next.value, "B");
   });
 
-  it("dequeue() returns removed node and updates size.", () => {
+  it("dequeue() returns removed node and updates length.", () => {
     const q = new Queue();
     q.enqueue("A");
     q.enqueue("B");
     const removedNode = q.dequeue();
-    assert.equal(q.size, 1);
+    assert.equal(q.length, 1);
     assert.equal(removedNode.value, "A");
+  });
+  it("dequeue() does not crash and does nothing on empty Queue.", () => {
+    const q = new Queue();
+    assert.isNotOk(q.dequeue());
+    assert.equal(q.length, 0);
   });
   it("dequeue() resets head and tail once queue is empty.", () => {
     const q = new Queue();
@@ -82,11 +87,7 @@ describe("Queue from scratch", () => {
     assert.isNotOk(q.head);
     assert.isNotOk(q.tail);
   });
-  it("dequeue() does nothing and returns null on empty queue.", () => {
-    const q = new Queue();
-    assert.isNotOk(q.dequeue());
-    assert.equal(q.size, 0);
-  });
+
   it("Queue has behavior of first in first out.", () => {
     const q = new Queue();
     q.enqueue("A");
@@ -95,7 +96,9 @@ describe("Queue from scratch", () => {
     assert.equal(q.dequeue().value, "A");
     assert.equal(q.dequeue().value, "B");
     assert.equal(q.dequeue().value, "C");
-    assert.isNotOk(q.dequeue());
+
+    q.enqueue("Abba");
+    assert.equal(q.dequeue().value, "Abba");
   });
 });
 
