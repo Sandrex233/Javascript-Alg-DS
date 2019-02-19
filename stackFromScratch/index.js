@@ -1,6 +1,6 @@
 // Create a stack data structure.  The stack
 // should be a class with methods 'push', 'pop'. Adding an element to the stack should
-// store it until it is removed. Hint use a Singly Linked List. Only need this.first
+// store it until it is removed. Hint use a Singly Linked List.
 // --- Examples
 //   const s = new Stack();
 //   s.push(1);
@@ -16,8 +16,8 @@ class Node {
 
 class Stack {
   constructor() {
-    this.first = null;
-    this.size = 0;
+    this.head = null;
+    this.length = 0;
   }
 }
 
@@ -52,18 +52,35 @@ describe("Stack from scratch", () => {
     const s = new Stack();
     s.push("A");
     s.push("B");
-    assert.equal(s.size, 2);
-    assert.equal(s.first.value, "B");
+    assert.equal(s.length, 2);
+    assert.equal(s.head.value, "B");
   });
-  it("pop() returns removed node and updates size of stack.", () => {
+  it("pop() returns removed node and updates length of stack.", () => {
     const s = new Stack();
     s.push("A");
     assert.equal(s.pop().value, "A");
-    assert.equal(s.size, 0);
+    assert.equal(s.length, 0);
     s.push("B");
     assert.equal(s.pop().value, "B");
   });
-  it("follows first in, last out.", () => {
+  it("pop() returns null and does not change length on empty stack.", () => {
+    const s = new Stack();
+    assert.equal(s.pop(), null);
+    assert.equal(s.length, 0);
+  });
+  it("follows LIFO / FILO behavior.", () => {
+    const browserHistory = new Stack();
+    browserHistory.push("www.youtube.com");
+    browserHistory.push("www.youtube.com/login/KodingKevin");
+    browserHistory.push("www.youtube.com/watch/cats");
+    browserHistory.push("www.youtube.com/watch/cats_meowing");
+
+    //Pressing the back button on my browser
+    assert.equal(
+      browserHistory.pop().value,
+      "www.youtube.com/watch/cats_meowing"
+    );
+
     const s = new Stack();
     s.push(1);
     s.push(2);
