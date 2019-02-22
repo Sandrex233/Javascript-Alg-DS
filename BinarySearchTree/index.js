@@ -36,97 +36,122 @@ describe("insert()", () => {
     BST.insert(10);
     BST.insert(1);
     assert.equal(BST.root.value, 10);
+    //          10
+    //        /   \
+    //       ?     ?
   });
   it("Does not insert if value is equal to another value in BST.", () => {
     const BST = new BinarySearchTree();
     BST.insert(10);
-    BST.insert(5);
-    BST.insert(15);
-    BST.insert(17);
-    BST.insert(17);
+    BST.insert(10);
 
-    assert.equal(BST.root.left.value, 5);
-    assert.equal(BST.root.right.value, 15);
-    assert.equal(BST.root.right.right.value, 17);
-    assert.isNotOk(BST.root.right.right.right);
-    assert.isNotOk(BST.root.right.right.left);
+    assert.isNotOk(BST.root.left);
+    assert.isNotOk(BST.root.right);
   });
   it("Inserts correctly.", () => {
     const BST = new BinarySearchTree();
+    BST.insert(8);
+    BST.insert(3);
     BST.insert(10);
-    BST.insert(5);
-    BST.insert(15);
-    BST.insert(17);
+    BST.insert(1);
+    BST.insert(6);
+    BST.insert(14);
+    //          8
+    //        /   \
+    //       3     10
+    //      / \      \
+    //     1   6     14
 
-    assert.equal(BST.root.left.value, 5);
-    assert.equal(BST.root.right.value, 15);
-    assert.equal(BST.root.right.right.value, 17);
+    assert.equal(BST.root.left.value, 3);
+    assert.equal(BST.root.left.left.value, 1);
+    assert.equal(BST.root.left.right.value, 6);
+
+    assert.equal(BST.root.right.value, 10);
+    assert.equal(BST.root.right.right.value, 14);
   });
 });
 
-describe.skip("find()", () => {
+describe("find()", () => {
   it("returns node with the same data.", () => {
     const BST = new BinarySearchTree();
-    BST.insert(10);
-    BST.insert(5);
-    BST.insert(15);
-    BST.insert(20);
-    BST.insert(0);
-    BST.insert(-5);
+    BST.insert(8);
     BST.insert(3);
+    BST.insert(10);
+    BST.insert(1);
+    BST.insert(6);
+    BST.insert(14);
+    //          8
+    //        /   \
+    //       3     10
+    //      / \      \
+    //     1   6     14
 
-    const node = BST.root.left.left.right;
-    assert.deepEqual(BST.find(3), node);
+    const six = BST.root.left.right;
+    assert.deepEqual(BST.find(6), six);
   });
   it("returns falsy value if value not found.", () => {
     const BST = new BinarySearchTree();
-    BST.insert(10);
-    BST.insert(5);
-    BST.insert(15);
-    BST.insert(20);
-    BST.insert(0);
-    BST.insert(-5);
+    assert.isNotOk(BST.find(9999));
+    BST.insert(8);
     BST.insert(3);
-
+    BST.insert(10);
+    BST.insert(1);
+    BST.insert(6);
+    BST.insert(14);
+    //          8
+    //        /   \
+    //       3     10
+    //      / \      \
+    //     1   6     14
     assert.isNotOk(BST.find(9999));
   });
 });
 
-describe.skip("BFS()", () => {
+describe("BFS()", () => {
   it("Works on empty tree.", () => {
     const BST = new BinarySearchTree();
     assert.deepEqual(BST.BFS(), []);
   });
   it("can traverse BF.", () => {
     const BST = new BinarySearchTree();
-    BST.insert(10);
-    BST.insert(15);
-    BST.insert(6);
     BST.insert(8);
     BST.insert(3);
-    BST.insert(20);
+    BST.insert(10);
+    BST.insert(1);
+    BST.insert(6);
+    BST.insert(14);
     const res = BST.BFS();
+    //          8
+    //        /   \
+    //       3     10
+    //      / \      \
+    //     1   6     14
 
-    assert.deepEqual(res, [10, 6, 15, 3, 8, 20]);
+    assert.deepEqual(res.map(node => node.value), [8, 3, 10, 1, 6, 14]);
   });
 });
 
-describe.skip("DFS()", () => {
+describe("DFS()", () => {
   it("Works on empty tree.", () => {
     const BST = new BinarySearchTree();
     assert.deepEqual(BST.DFS(), []);
   });
   it("can traverse DF.", () => {
     const BST = new BinarySearchTree();
-    BST.insert(10);
-    BST.insert(15);
-    BST.insert(6);
     BST.insert(8);
     BST.insert(3);
-    BST.insert(20);
+    BST.insert(10);
+    BST.insert(1);
+    BST.insert(6);
+    BST.insert(14);
     const res = BST.DFS();
+    //          8
+    //        /   \
+    //       3     10
+    //      / \      \
+    //     1   6     14
 
-    assert.deepEqual(res, [10, 6, 3, 8, 15, 20]);
+    assert.deepEqual(res.map(node => node.value), [8, 3, 1, 6, 10, 14]);
   });
 });
 
