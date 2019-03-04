@@ -1,5 +1,6 @@
-function oddsGreaterThan100() {}
+// Return an odd number greater than 100.
 
+function oddsGreaterThan100() {}
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
 //    ) (   | (    \/| (    \/   ) (     | (    \/| (   ) || (    \/| (    \/| (    \/
@@ -34,6 +35,7 @@ describe("oddsGreaterThan100", () => {
   });
   it("returns a number greater than 100.", () => {
     const res = oddsGreaterThan100();
+    assert.equal(typeof res, "number");
     assert.equal(res > 100, true);
   });
 });
