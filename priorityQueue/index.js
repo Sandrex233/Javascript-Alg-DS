@@ -1,4 +1,4 @@
-// Implement a Priority Queue, which is a Min Binary Heap
+// Implement a Priority Queue, using a Min Binary Heap
 // For bubbleUp you can find parent index by doing Math.floor((idx - 1) / 2);
 // For sinkDown you can find child indexes with (idx * 2 + 1) (idx * 2 + 2)
 // Hint: You can copy most of the code from our Max Binary Heap Implementation
@@ -44,28 +44,29 @@ describe("Dequeue", () => {
   });
   it("correctly reorganizes Priority Queue", () => {
     let emergencyRoom = new PriorityQueue();
-    emergencyRoom.enqueue("gunshot wound", 5);
     emergencyRoom.enqueue("heart attack", 9);
     emergencyRoom.enqueue("stomach cramp", 11);
     emergencyRoom.enqueue("migraine", 14);
     emergencyRoom.enqueue("fever", 18);
     emergencyRoom.enqueue("back pain", 19);
+    emergencyRoom.enqueue("gunshot wound", 5);
     emergencyRoom.enqueue("coughing", 21);
     emergencyRoom.enqueue("headache", 33);
     emergencyRoom.enqueue("food poisoning", 17);
     emergencyRoom.enqueue("sore throat", 27);
 
     assert.equal(emergencyRoom.dequeue().val, "gunshot wound");
+
     assert.deepEqual(emergencyRoom.values.map(node => node.val), [
       "heart attack",
-      "migraine",
       "stomach cramp",
+      "migraine",
       "food poisoning",
-      "fever",
       "back pain",
+      "sore throat",
       "coughing",
       "headache",
-      "sore throat"
+      "fever"
     ]);
 
     let emergencyRoom2 = new PriorityQueue();
