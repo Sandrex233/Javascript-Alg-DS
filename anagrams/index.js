@@ -39,14 +39,20 @@ const { assert } = chai;
 describe("Anagrams", () => {
   it("works if case sensitivity and non word characters NOT taken into account", () => {
     assert.equal(anagrams("earth", "heart"), true);
+
+    assert.equal(anagrams("love", "meow"), false);
     assert.equal(anagrams("lol", "lolc"), false);
   });
   it("is case insensitive. 'HEART' and 'earth' should return true", () => {
     assert.equal(anagrams("HEART", "earth"), true);
+
+    assert.equal(anagrams("love", "meow"), false);
     assert.equal(anagrams("lol", "lolc"), false);
   });
-  it("only matches word characters. 'heart!'' and ''  earth' should return true", () => {
-    assert.equal(anagrams("heart!", "  earth"), true);
+  it("only matches word characters. 'heart!'' and '' earth' should return true", () => {
+    assert.equal(anagrams("heart!", " earth"), true);
+
+    assert.equal(anagrams("love", "meow"), false);
     assert.equal(anagrams("lol", "lolc"), false);
   });
 });
