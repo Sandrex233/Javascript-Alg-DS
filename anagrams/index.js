@@ -45,6 +45,7 @@ describe("Anagrams", () => {
   });
   it("is case insensitive. 'HEART' and 'earth' should return true", () => {
     assert.equal(anagrams("HEART", "earth"), true);
+    assert.equal(anagrams("heart", "EARTH"), true);
 
     assert.equal(anagrams("love", "meow"), false);
     assert.equal(anagrams("lol", "lolc"), false);
