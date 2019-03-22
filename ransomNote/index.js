@@ -4,6 +4,7 @@
 // --- Examples:
 // const magazine = "I love you";
 // ransomNote('I love you', magazine) --> true
+// ransomNote('I love you you', magazine) --> false
 // ransomNote('I love you Kevin please marry me boss', magazine) --> false
 function ransomNote(note, magazine) {}
 
@@ -44,6 +45,8 @@ describe("Ransom Note", () => {
       ransomNote("I love you Kevin please marry me boss", magazine),
       false
     );
+
+    assert.equal(ransomNote("I love you you", magazine), false);
   });
 });
 
