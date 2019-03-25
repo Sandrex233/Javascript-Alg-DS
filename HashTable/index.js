@@ -1,72 +1,98 @@
 class HashTable {
-  constructor(size = 53) {
+  constructor(size) {
     this.keyMap = new Array(size);
   }
 
-  _hash(key) {
+  hash(key) {
     let total = 0;
-    let WEIRD_PRIME = 31;
     for (let i = 0; i < Math.min(key.length, 100); i++) {
-      let char = key[i];
-      let value = char.charCodeAt(0) - 96;
-      total = (total * WEIRD_PRIME + value) % this.keyMap.length;
+      total = total + key.charCodeAt(i);
     }
-    return total;
+    return total % this.keyMap.length;
   }
 }
+
+// _________ _______  _______ _________   _______  _______  _______  _______  _______
+// \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
+//    ) (   | (    \/| (    \/   ) (     | (    \/| (   ) || (    \/| (    \/| (    \/
+//    | |   | (__    | (_____    | |     | |      | (___) || (_____ | (__    | (_____
+//    | |   |  __)   (_____  )   | |     | |      |  ___  |(_____  )|  __)   (_____  )
+//    | |   | (            ) |   | |     | |      | (   ) |      ) || (            ) |
+//    | |   | (____/\/\____) |   | |     | (____/\| )   ( |/\____) || (____/\/\____) |
+//    )_(   (_______/\_______)   )_(     (_______/|/     \|\_______)(_______/\_______)
+//                             ____       _
+//                             |  _ \     | |
+//                             | |_) | ___| | _____      __
+//                             |  _ < / _ \ |/ _ \ \ /\ / /
+//                             | |_) |  __/ | (_) \ V  V /
+//                             |____/ \___|_|\___/ \_/\_/
 
 mocha.setup("bdd");
 const { assert } = chai;
 
-function createTestHashTable() {
+const createColorsHT = () => {
   let ht = new HashTable(17);
-  ht.set("maroon", "#800000");
-  ht.set("yellow", "#FFFF00");
-  ht.set("olive", "#808000");
-  ht.set("salmon", "#FA8072");
-  ht.set("lightcoral", "#F08080");
-  ht.set("mediumvioletred", "#C71585");
-  ht.set("plum", "#DDA0DD");
-  ht.set("dupe", "#DDA0DD");
+  ht.set("red", "#ff0000");
+  ht.set("orange", "#ffa500 ");
+  ht.set("yellow", "#ffff00");
+  ht.set("green", "#00ff00");
+  ht.set("blue", "#0000ff");
+  ht.set("indigo", "#4b0082");
+  ht.set("violet", "#800080");
   return ht;
-}
+};
 
-describe("Hash Table", () => {
-  it("set() works and uses seperate-chaining to avoid collisions.", () => {
-    let ht = createTestHashTable();
-    assert.isOk(ht.keyMap[0]);
-    assert.isNotOk(ht.keyMap[2]);
-    assert.equal(ht.keyMap[8].length, 2);
+describe("set()", () => {
+  it("sets new key value pairs and uses seperate-chaining to avoid collisions.", () => {
+    const ht = createColorsHT();
+    assert.isNotOk(ht.keyMap[1]);
+    assert.deepEqual(ht.keyMap[5], [
+      ["yellow", "#ffff00"],
+      ["indigo", "#4b0082"]
+    ]);
+    assert.deepEqual(ht.keyMap[16], [["blue", "#0000ff"]]);
   });
+  it("updates value for key, if key already exists.", () => {
+    const ht = createColorsHT();
+    assert.deepEqual(ht.keyMap[16], [["blue", "#0000ff"]]);
+    ht.set("blue", "meow");
+    assert.deepEqual(ht.keyMap[16], [["blue", "meow"]]);
+    ht.set("blue", "#0000ff");
+    assert.deepEqual(ht.keyMap[16], [["blue", "#0000ff"]]);
+  });
+});
 
-  it("get() works and returns the value of key, or falsy value on invalid key.", () => {
-    let ht = createTestHashTable();
-    assert.equal(ht.get("yellow"), "#FFFF00");
-    assert.isNotOk(ht.get("woofwoof"));
+describe.skip("get()", () => {
+  it("returns value of key, or undefined if key does not yet exist.", () => {
+    const ht = createColorsHT();
+    assert.equal(ht.get("blue"), "#0000ff");
+    assert.equal(ht.get("blueeee"), undefined);
   });
-  it("keys() returns an array of all key values.", () => {
-    let ht = createTestHashTable();
+});
+
+describe.skip("keys() / values()", () => {
+  it("keys() returns an array of key values.", () => {
+    const ht = createColorsHT();
     assert.deepEqual(ht.keys(), [
-      "plum",
-      "salmon",
-      "dupe",
-      "maroon",
+      "green",
       "yellow",
-      "olive",
-      "lightcoral",
-      "mediumvioletred"
+      "indigo",
+      "orange",
+      "red",
+      "violet",
+      "blue"
     ]);
   });
-  it("values() returns an array of values with no dupes!", () => {
-    let ht = createTestHashTable();
+  it("values() returns an array of values.", () => {
+    const ht = createColorsHT();
     assert.deepEqual(ht.values(), [
-      "#DDA0DD",
-      "#FA8072",
-      "#800000",
-      "#FFFF00",
-      "#808000",
-      "#F08080",
-      "#C71585"
+      "#00ff00",
+      "#ffff00",
+      "#4b0082",
+      "#ffa500 ",
+      "#ff0000",
+      "#800080",
+      "#0000ff"
     ]);
   });
 });
