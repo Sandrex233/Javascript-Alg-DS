@@ -1,6 +1,11 @@
 // Implement Linear Search Algorithms that search a provided Array for the provided value.
 // The Linear Search Algorithms will either return a boolean, index, or value back.
 
+// const foods = ["pizza", "orange", "yogurt"];
+// linearSearchIndexOf(foods, "pizza") --> 0
+// linearSearchIncludes(foods, "pizza") --> true
+// linearSearchFind(foods, food => food === "pizza") --> "pizza"
+
 function linearSearchIndexOf(arr, val) {}
 
 function linearSearchIncludes(arr, val) {}
