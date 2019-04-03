@@ -1,4 +1,10 @@
-//Searching for number 30
+const inventory = ["bikes", "backpacks", "laptops", "eggs"];
 
-// [5, 10, 15, 20, 25, 30, 35, 40]
-//  LP         MP              RP
+console.log("includes()", inventory.includes("laptops"));
+console.log("includes()", inventory.includes("yogurt"));
+
+console.log("indexOf()", inventory.indexOf("laptops"));
+console.log("indexOf()", inventory.indexOf("yogurt"));
+
+console.log("find()", inventory.find(item => item === "laptops"));
+console.log("find()", inventory.find(item => item === "yogurt"));
