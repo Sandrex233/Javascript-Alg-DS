@@ -36,16 +36,23 @@ describe("A Node", () => {
 });
 
 describe.skip("unshift()", () => {
-  it("adds node to start of list AND correctly sets 'next' property. Increases length of list.", () => {
+  it("adds new node to start of list by correctly setting head and updating length.", () => {
     const l = new LinkedList();
-    l.unshift(1);
-    assert.equal(l.head.data, 1);
+    l.unshift("Kevin");
+    assert.equal(l.head.data, "Kevin");
     assert.equal(l.length, 1);
-    l.unshift(2);
-    assert.equal(l.head.data, 2);
-    assert.equal(l.length, 2);
+  });
 
-    assert.equal(l.head.next.data, 1);
+  it("Does not overwrite old head.", () => {
+    const l = new LinkedList();
+    l.unshift("Kevin");
+    assert.equal(l.head.data, "Kevin");
+    assert.equal(l.length, 1);
+
+    l.unshift("eric");
+    assert.equal(l.head.data, "eric");
+    assert.equal(l.head.next.data, "Kevin");
+    assert.equal(l.length, 2);
   });
 });
 
