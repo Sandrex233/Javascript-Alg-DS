@@ -35,7 +35,7 @@ describe("A Node", () => {
   });
 });
 
-describe.skip("unshift()", () => {
+describe("unshift(data)", () => {
   it("adds new node to start of list by correctly setting head and updating length.", () => {
     const l = new LinkedList();
     l.unshift("Kevin");
@@ -145,7 +145,7 @@ describe.skip("pop()", () => {
   });
 });
 
-describe.skip("push()", () => {
+describe.skip("push(data)", () => {
   it("adds to the end of the list and increases length.", () => {
     const l = new LinkedList();
     l.unshift(1);
@@ -162,7 +162,7 @@ describe.skip("push()", () => {
   });
 });
 
-describe.skip("get()", () => {
+describe.skip("get(index)", () => {
   it("returns null on negative or out of bounds index.", () => {
     const l = new LinkedList();
     l.push("Kevin");
@@ -181,7 +181,7 @@ describe.skip("get()", () => {
   });
 });
 
-describe.skip("set()", () => {
+describe.skip("set(index, data)", () => {
   it("returns falsy value on out of bounds or negative index.", () => {
     const l = new LinkedList();
     l.push(2);
@@ -197,7 +197,7 @@ describe.skip("set()", () => {
   });
 });
 
-describe.skip("remove()", () => {
+describe.skip("remove(index)", () => {
   it("returns falsy value on out of bounds OR negative index.", () => {
     const l = new LinkedList();
     l.push(2);
@@ -230,7 +230,7 @@ describe.skip("remove()", () => {
   });
 });
 
-describe.skip("insert()", () => {
+describe.skip("insert(index, data)", () => {
   it("returns false on index greater than length or negative index.", () => {
     const l = new LinkedList();
     assert.equal(l.insert(1, "meow"), false);
@@ -295,7 +295,7 @@ describe.skip("reverse()", () => {
   });
 });
 
-describe.skip("forEach()", () => {
+describe.skip("forEach(cbFn)", () => {
   it("calls function provided to it on each node.", () => {
     const l = new LinkedList();
 
