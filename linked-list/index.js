@@ -35,7 +35,7 @@ describe("A Node", () => {
   });
 });
 
-describe("unshift(data)", () => {
+describe.skip("unshift(data)", () => {
   it("adds new node to start of list by correctly setting head and updating length.", () => {
     const l = new LinkedList();
     l.unshift("Kevin");
