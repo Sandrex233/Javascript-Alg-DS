@@ -291,8 +291,23 @@ describe.skip("reverse()", () => {
   });
 });
 
-describe.skip("forEach(cbFn)", () => {
-  it("calls function provided to it on each node.", () => {
+describe.skip("forEach(fn)", () => {
+  it("calls function on each Node by passing in each Node as first argument", () => {
+    const l = new LinkedList();
+
+    l.push(10);
+    l.push(20);
+    l.push(30);
+
+    l.forEach(node => {
+      node.data += 1;
+    });
+
+    assert.equal(l.get(0).data, 11);
+    assert.equal(l.get(1).data, 21);
+    assert.equal(l.get(2).data, 31);
+  });
+  it("also passes in index of each Node as second argument to function", () => {
     const l = new LinkedList();
 
     l.push(10);
