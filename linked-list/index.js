@@ -266,19 +266,6 @@ describe.skip("insert(index, data)", () => {
 });
 
 describe.skip("reverse()", () => {
-  it("reverses the data in the list.", () => {
-    const l = new LinkedList();
-
-    l.push("A");
-    l.push("B");
-    l.push("C");
-
-    l.reverse();
-
-    assert.equal(l.get(0).data, "C");
-    assert.equal(l.get(1).data, "B");
-    assert.equal(l.get(2).data, "A");
-  });
   it("reverses the data in the list and keeps the same nodes.", () => {
     const l = new LinkedList();
 
@@ -292,6 +279,15 @@ describe.skip("reverse()", () => {
     assert.equal(l.get(1).data, "B");
     assert.equal(l.get(2).data, "A");
     assert.equal(l.get(1), node);
+  });
+  it("does not crash on list with 0 or 1 nodes.", () => {
+    const l = new LinkedList();
+
+    l.reverse();
+    l.push("A");
+    l.reverse();
+
+    assert.equal(l.get(0).data, "A");
   });
 });
 
