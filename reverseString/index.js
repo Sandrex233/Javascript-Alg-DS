@@ -29,14 +29,14 @@ function reverse(str) {}
 //                          ______ ______ ______ ______ ______
 //                         |______|______|______|______|______|
 
-mocha.setup("bdd");
+mocha.setup('bdd');
 const { assert } = chai;
 
-describe("String Reversal", () => {
-  it("reverse() correctly reverses string", () => {
-    assert.equal(reverse("ffaa"), "aaff");
-    assert.equal(reverse("  aaff"), "ffaa  ");
-  });
+describe('String Reversal', () => {
+	it('reverse() correctly reverses string', () => {
+		assert.equal(reverse('ffaa'), 'aaff');
+		assert.equal(reverse('  aaff'), 'ffaa  ');
+	});
 });
 
 mocha.run();
