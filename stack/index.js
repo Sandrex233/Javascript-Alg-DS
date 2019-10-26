@@ -62,7 +62,7 @@ describe('Stack', () => {
 		assert.equal(s.pop(), 2);
 		assert.equal(s.pop(), 1);
 	});
-	it('returns null/undefined for empty stack.', () => {
+	it('pop returns null/undefined for empty stack.', () => {
 		const browserHistory = new Stack();
 		assert.equal(browserHistory.pop(), null);
 	});
