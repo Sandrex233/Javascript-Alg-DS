@@ -1,12 +1,16 @@
-// --- Directions
-// Given a magazine of words and a ransom note, determine if it’s possible to “cut out”
-// and create the ransom note from the magazine words. Word count matters!
-// --- Examples:
-// const magazine = "I love you";
-// ransomNote('I love you', magazine) --> true
-// ransomNote('I love you you', magazine) --> false
-// ransomNote('I love you Kevin please marry me boss', magazine) --> false
-function ransomNote(note, magazine) {}
+// Create a queue data structure.  The queue should
+// have methods 'enqueue' and 'dequeue' which add / remove
+// elements from the queue AND also maintain 'first-in first-out'
+// --- Examples
+// const q = new Queue();
+// q.enqueue(1);
+// q.enqueue(2);
+// q.enqueue(3);
+// expect(q.dequeue()).toEqual(1);
+
+class Queue {
+	constructor() {}
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
@@ -31,23 +35,29 @@ function ransomNote(note, magazine) {}
 //                          ______ ______ ______ ______ ______
 //                         |______|______|______|______|______|
 
-mocha.setup("bdd");
+mocha.setup('bdd');
 const { assert } = chai;
-const magazine = "I love you";
 
-describe("Ransom Note", () => {
-  it("Should return true", () => {
-    assert.equal(ransomNote("I love you", magazine), true);
-  });
+describe('Queue', () => {
+	it('enqueue and dequeue methods exist.', () => {
+		const q = new Queue();
+		q.enqueue(1);
+		q.dequeue();
+	});
+	it('Queue has FIFO Behavior.', () => {
+		const q = new Queue();
+		q.enqueue(1);
+		q.enqueue(2);
+		q.enqueue(3);
 
-  it("Should return false", () => {
-    assert.equal(
-      ransomNote("I love you Kevin please marry me boss", magazine),
-      false
-    );
-
-    assert.equal(ransomNote("I love you you", magazine), false);
-  });
+		assert.equal(q.dequeue(), 1);
+		assert.equal(q.dequeue(), 2);
+		assert.equal(q.dequeue(), 3);
+	});
+	it('dequeue returns null or undefined on empty queue.', () => {
+		const q = new Queue();
+		assert.equal(q.dequeue(), null);
+	});
 });
 
 mocha.run();

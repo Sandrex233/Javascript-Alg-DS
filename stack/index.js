@@ -1,14 +1,16 @@
-// --- Directions
-// Make a function that looks through an array of objects (first argument) and
-// returns an array of all objects that have matching name and value pairs
-// (second argument). Each name and value pair of the source object has to be
-// present in the object from the collection if it is to be included in the
-// returned array.
-// --- Examples:
-// whatIsInAName([{ a: 1, b: 2, c: 3 }], { a: 1, b: 9999, c: 3 }) --> []
-// whatIsInAName([{ "apple": 1, "bat": 2 }], { "apple": 1 }) --> [{ "apple": 1, "bat": 2 }]
+// Create a stack data structure.  The stack
+// should be a class with methods 'push' and 'pop'.
+// 'push' should add element to stack.
+// 'pop' should remove top most element in the stack and return it.
+// --- Examples
+//   const s = new Stack();
+//   s.push(1);
+//   s.push(2);
+//   s.pop(); // returns 2
 
-function whatIsInAName(collection, source) {}
+class Stack {
+	constructor() {}
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
@@ -33,29 +35,37 @@ function whatIsInAName(collection, source) {}
 //                          ______ ______ ______ ______ ______
 //                         |______|______|______|______|______|
 
-mocha.setup("bdd");
+mocha.setup('bdd');
 const { assert } = chai;
 
-describe("whatIsInAName()", () => {
-  it("works.", () => {
-    const res1 = whatIsInAName(
-      [
-        { first: "Romeo", last: "Montague" },
-        { first: "Mercutio", last: null },
-        { first: "Tybalt", last: "Capulet" }
-      ],
-      { last: "Capulet" }
-    );
-    const res2 = whatIsInAName(
-      [{ apple: 1 }, { apple: 1 }, { apple: 1, bat: 2 }],
-      { apple: 1 }
-    );
-    const res3 = whatIsInAName([{ a: 1, b: 2, c: 3 }], { a: 1, b: 9999, c: 3 });
+describe('Stack', () => {
+	it('push and pop methods exist', () => {
+		const s = new Stack();
+		s.push(1);
+		s.pop();
+	});
+	it('has FILO / LIFO behavior.', () => {
+		const browserHistory = new Stack();
+		browserHistory.push('www.youtube.com');
+		browserHistory.push('www.youtube.com/login/KodingKevin');
+		browserHistory.push('www.youtube.com/watch/cats');
+		browserHistory.push('www.youtube.com/watch/cats_meowing');
 
-    assert.deepEqual(res1, [{ first: "Tybalt", last: "Capulet" }]);
-    assert.deepEqual(res2, [{ apple: 1 }, { apple: 1 }, { apple: 1, bat: 2 }]);
-    assert.deepEqual(res3, []);
-  });
+		//Pressing the back button on my browser
+		assert.equal(browserHistory.pop(), 'www.youtube.com/watch/cats_meowing');
+
+		const s = new Stack();
+		s.push(1);
+		s.push(2);
+		s.push(3);
+		assert.equal(s.pop(), 3);
+		assert.equal(s.pop(), 2);
+		assert.equal(s.pop(), 1);
+	});
+	it('returns null/undefined for empty stack.', () => {
+		const browserHistory = new Stack();
+		assert.equal(browserHistory.pop(), null);
+	});
 });
 
 mocha.run();
