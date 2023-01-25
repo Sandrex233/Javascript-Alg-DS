@@ -5,7 +5,14 @@
 // merge([1,5], [4,6,7]) === [1,4,5,6,7]
 // merge([4,6,7], [1,5]) === [1,4,5,6,7]
 
-function merge(sortedArr1, sortedArr2) {}
+function merge(sortedArr1, sortedArr2) {
+  // Method 1
+  /* return sortedArr1.concat(sortedArr2).sort((a, b) => a - b) */
+
+  // Method 2
+  return [...sortedArr1, ...sortedArr2].sort((a, b) => a - b)
+}
+
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
