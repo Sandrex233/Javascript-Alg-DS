@@ -4,7 +4,22 @@
 //   reverse('abcd') === 'dcba'
 //   reverse('Hello!') === '!olleH'
 
-function reverse(str) {}
+function reverse(str) {
+	// Method 1
+	/* return str.split("").reverse().join("") */
+
+	// Method 2
+	const strArr = str.split("")
+	const newArr = []
+	let i = strArr.length - 1
+	while (i >= 0) {
+		newArr.push(strArr[i])
+		--i
+	}
+	return newArr.join("")
+
+}
+
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
