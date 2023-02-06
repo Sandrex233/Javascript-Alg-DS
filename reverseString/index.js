@@ -9,17 +9,24 @@ function reverse(str) {
 	/* return str.split("").reverse().join("") */
 
 	// Method 2
-	const strArr = str.split("")
-	const newArr = []
-	let i = strArr.length - 1
-	while (i >= 0) {
-		newArr.push(strArr[i])
-		--i
+	// const strArr = str.split("")
+	// const newArr = []
+	// let i = strArr.length - 1
+	// while (i >= 0) {
+	// 	newArr.push(strArr[i])
+	// 	--i
+	// }
+	// return newArr.join("")
+
+
+	// Method 3
+	let res = ""
+	for (let i = 0; i < str.length; i++) {
+		const char = str[i];
+		res = char + res
 	}
-	return newArr.join("")
-
+	return res
 }
-
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
