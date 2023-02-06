@@ -3,7 +3,22 @@
 // maxChar("I loveeeeeee noodles") === "e"
 // maxChar("1337") === "3"
 
-function maxChar(str) {}
+function maxChar(str) {
+  let countObj = {}
+  let maxChar = ""
+  let maxCount = 0
+
+  for (let i = 0; i < str.length; i++) {
+    countObj[str[i]] = countObj[str[i]] + 1 || 1
+
+    if (countObj[str[i]] > maxCount) {
+      maxChar = str[i]
+      maxCount = countObj[str[i]]
+    }
+  }
+
+  return maxChar
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
