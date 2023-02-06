@@ -7,17 +7,27 @@
 //   reverseInt(-13) === -31
 //   reverseInt(-100) === -1
 
-// function reverseInt(n) {
-//   let strArr = n.toString().split("")
-//   console.log(strArr)
-//   // let myRegex = 
+function reverseInt(n) {
+    // Method 1
+    // let nStr = n.toString()
+    // const nStrIndex = nStr.substring(0, 1) == '-'
+    // if (nStrIndex) {
+    //     return "-" + parseInt(nStr.split("").reverse().join(""))
+    // } else {
+    //     return parseInt(nStr.split("").reverse().join(""))
+    // }
 
+    // Method 2
+    let reversed = n.toString().split("").reverse().join("")
 
+    if (n < 0) {
+        return parseInt(reversed) * -1
+    } else {
+        return parseInt(reversed)
+    }
+}
 
-// }
-
-
-// console.log(reverseInt(-100))
+console.log(reverseInt(100))
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
@@ -42,23 +52,23 @@
 //                          ______ ______ ______ ______ ______
 //                         |______|______|______|______|______|
 
-// mocha.setup("bdd");
-// const { assert } = chai;
+mocha.setup("bdd");
+const { assert } = chai;
 
-// describe("Integer Reversal", () => {
-//   it("reverseInt() works on positive numbers", () => {
-//     assert.equal(reverseInt(3), 3);
-//     assert.equal(reverseInt(13), 31);
-//     assert.equal(reverseInt(100), 1);
-//     assert.equal(reverseInt(1408), 8041);
-//   });
+describe("Integer Reversal", () => {
+    it("reverseInt() works on positive numbers", () => {
+        assert.equal(reverseInt(3), 3);
+        assert.equal(reverseInt(13), 31);
+        assert.equal(reverseInt(100), 1);
+        assert.equal(reverseInt(1408), 8041);
+    });
 
-//   it("reverseInt() works on negative numbers numbers", () => {
-//     assert.equal(reverseInt(-3), -3);
-//     assert.equal(reverseInt(-13), -31);
-//     assert.equal(reverseInt(-100), -1);
-//     assert.equal(reverseInt(-1408), -8041);
-//   });
-// });
+    it("reverseInt() works on negative numbers numbers", () => {
+        assert.equal(reverseInt(-3), -3);
+        assert.equal(reverseInt(-13), -31);
+        assert.equal(reverseInt(-100), -1);
+        assert.equal(reverseInt(-1408), -8041);
+    });
+});
 
-// mocha.run();
+mocha.run();
