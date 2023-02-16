@@ -12,6 +12,13 @@ class LinkedList {
 		this.head = null;
 		this.length = 0;
 	}
+
+	// O(1) time complexity for unshift on linked list
+	unshift(data) {
+		const newHead = new Node(data, this.head);
+		this.length++;
+		this.head = newHead;
+	}
 }
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
@@ -40,7 +47,7 @@ describe('A Node', () => {
 	});
 });
 
-describe.skip('unshift(data)', () => {
+describe('unshift(data)', () => {
 	it('adds new node to start of list by correctly setting head and updating length.', () => {
 		const l = new LinkedList();
 		l.unshift('Kevin');
