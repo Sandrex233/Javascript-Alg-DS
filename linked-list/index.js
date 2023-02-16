@@ -48,6 +48,27 @@ class LinkedList {
 		this.length--
 		return oldHead
 	}
+
+	pop() {
+		if (!this.head) {
+			return
+		}
+
+		if (this.length == 1) {
+			return this.shift()
+		}
+
+		const last = this.getLast()
+		let current = this.head
+		while (current != last) {
+			current = current.next
+		}
+
+		current.next = null
+		this.length--
+
+		return last
+	}
 }
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
@@ -163,7 +184,7 @@ describe('shift()', () => {
 	});
 });
 
-describe.skip('pop()', () => {
+describe('pop()', () => {
 	it('removes AND returns last node, decreases length.', () => {
 		const l = new LinkedList();
 		l.unshift('b');
