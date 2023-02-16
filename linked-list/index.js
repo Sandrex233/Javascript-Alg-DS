@@ -27,12 +27,15 @@ class LinkedList {
 	// O(n) for getLast
 	getLast() {
 		let currentNode = this.head;
-
 		while (currentNode && currentNode.next) {
 			currentNode = currentNode.next
 		}
-
 		return currentNode;
+	}
+
+	clear() {
+		this.head = null;
+		this.length = 0;
 	}
 }
 
@@ -108,7 +111,7 @@ describe('getLast()', () => {
 	});
 });
 
-describe.skip('clear()', () => {
+describe('clear()', () => {
 	it('clears out the linked list and resets length to 0.', () => {
 		const l = new LinkedList();
 		assert.equal(l.length, 0);
