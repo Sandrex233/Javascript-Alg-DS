@@ -1,6 +1,11 @@
 // Implement classes Node and Linked List
 
-class Node {}
+class Node {
+	constructor(data, next) {
+		this.data = data;
+		this.next = next;
+	}
+}
 
 class LinkedList {
 	constructor() {
