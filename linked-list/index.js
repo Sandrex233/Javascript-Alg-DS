@@ -94,6 +94,16 @@ class LinkedList {
 		return currentNode;
 	}
 
+	set(index, data) {
+		if (!this.get(index)) {
+			return false
+		}
+
+		const node = this.get(index)
+		node.data = data
+		return true
+	}
+
 }
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
@@ -268,7 +278,7 @@ describe('get(index)', () => {
 	});
 });
 
-describe.skip('set(index, data)', () => {
+describe('set(index, data)', () => {
 	it('returns falsy value on out of bounds or negative index.', () => {
 		const l = new LinkedList();
 		l.push(2);
