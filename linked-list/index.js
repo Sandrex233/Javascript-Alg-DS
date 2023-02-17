@@ -69,6 +69,17 @@ class LinkedList {
 
 		return last
 	}
+
+	push(data) {
+		if (!this.head) {
+			return this.unshift(data)
+		}
+
+		const last = this.getLast()
+		last.next = new Node(data, null)
+		this.length++;
+	}
+
 }
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
@@ -207,7 +218,7 @@ describe('pop()', () => {
 	});
 });
 
-describe.skip('push(data)', () => {
+describe('push(data)', () => {
 	it('adds to the end of the list and increases length.', () => {
 		const l = new LinkedList();
 		l.unshift(1);
