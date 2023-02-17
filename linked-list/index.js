@@ -13,18 +13,19 @@ class LinkedList {
 		this.length = 0;
 	}
 
-	// O(1) time complexity for unshift on linked list
+	// O(1) time complexity for insertion at the start
 	unshift(data) {
 		const newHead = new Node(data, this.head);
 		this.length++;
 		this.head = newHead;
 	}
 
+	// O(1) for getting the first node
 	getFirst() {
 		return this.head;
 	}
 
-	// O(n) for getLast
+	// O(n) for searching
 	getLast() {
 		let currentNode = this.head;
 		while (currentNode && currentNode.next) {
@@ -38,6 +39,7 @@ class LinkedList {
 		this.length = 0;
 	}
 
+	// O(1) time complexity for removal at the start
 	shift() {
 		if (!this.head) {
 			return
@@ -49,6 +51,7 @@ class LinkedList {
 		return oldHead
 	}
 
+	// O(n) time complexity for removal at the end
 	pop() {
 		if (!this.head) {
 			return
@@ -70,6 +73,7 @@ class LinkedList {
 		return last
 	}
 
+	// O(1) time complexity for insertion at the end
 	push(data) {
 		if (!this.head) {
 			return this.unshift(data)
@@ -80,6 +84,7 @@ class LinkedList {
 		this.length++;
 	}
 
+	// O(n) time complexity for searching
 	get(index) {
 		if (index >= this.length || index < 0) {
 			return null
@@ -94,6 +99,7 @@ class LinkedList {
 		return currentNode;
 	}
 
+	// O(n) time complexity
 	set(index, data) {
 		if (!this.get(index)) {
 			return false
@@ -104,6 +110,7 @@ class LinkedList {
 		return true
 	}
 
+	// O(n) time complexity for removal at given index
 	remove(index) {
 		if (!this.get(index)) {
 			return false
@@ -121,6 +128,7 @@ class LinkedList {
 		return removedNode
 	}
 
+	// O(n) time complexity for insertion at given index
 	insert(index, data) {
 		if (!this.get(index)) {
 			return false
@@ -139,7 +147,6 @@ class LinkedList {
 
 		return true
 	}
-
 }
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
